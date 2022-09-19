@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 import bgImg from "../../assets/the-witcher.png";
 import { Link } from "react-router-dom";
+import { API } from "../../config/api";
+import { useQuery } from "react-query";
 import img from "../../assets/txtw.png";
 import movies from "../../dummyData/movies.js";
 import tvSeries from "../../dummyData/tvseries.js";
@@ -8,8 +10,15 @@ import tvSeries from "../../dummyData/tvseries.js";
 function HomePage() {
   const title = "Home";
   document.title = "Dumbflix | " + title;
+
   const [dataMovies, setDataMovies] = useState(movies);
   const [dataTvSeries, setDataTvSeries] = useState(tvSeries);
+
+  let { data: film } = useQuery("filmsCache", async () => {
+    const response = await API.get("/films");
+    return response.data.data;
+  });
+  console.log(film);
 
   return (
     <>
@@ -45,31 +54,13 @@ function HomePage() {
         </div>
       </div>
       <div style={{ backgroundColor: "black" }}>
-        <h4 className="text-white ms-3">Tv Series</h4>
+        <h4 className="text-white ms-3">More film..</h4>
         <div className="containerCard">
-          {dataTvSeries.slice(0, 6).map((item) => (
+          {film?.slice(0, 12).map((item) => (
             <Link to="/detailFilm">
               <div className="box" key={item.id}>
                 <div className="imgBx">
-                  <img src={item.img} alt="" />
-                </div>
-                <div className="content">
-                  <div>
-                    <h2>{item.title}</h2>
-                    <p>{item.year}</p>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <h4 className="text-white ms-3">Movies</h4>
-        <div className="containerCard">
-          {dataMovies.slice(0, 6).map((item) => (
-            <Link to="/detailFilm">
-              <div className="box mb-5" key={item.id}>
-                <div className="imgBx">
-                  <img src={item.img} alt="" />
+                  <img src={item.thumbnailFilm} alt="" />
                 </div>
                 <div className="content">
                   <div>

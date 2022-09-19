@@ -149,7 +149,9 @@ export default function ModalLogin({ loginShow, setLoginShow, loginHere }) {
               </label>
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button className="btn1">Login</button>
+              <button type="submit" className="btn1">
+                Login
+              </button>
               <p className="warning">
                 Don't have an account?
                 <button onClick={loginHere} className="btnHere">

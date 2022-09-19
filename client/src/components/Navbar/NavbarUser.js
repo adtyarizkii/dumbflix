@@ -33,7 +33,7 @@ function NavbarUser() {
         <Container>
           <Nav>
             <Nav.Link>
-              <Link to="/" className="navlink text-white">
+              <Link to="/user" className="navlink text-white">
                 Home
               </Link>
             </Nav.Link>

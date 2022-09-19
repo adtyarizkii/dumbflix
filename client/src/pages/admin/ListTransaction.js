@@ -63,7 +63,6 @@ function ListTransaction() {
               <tr className="text-danger">
                 <th>No</th>
                 <th>Users</th>
-                <th>Bukti Transfer</th>
                 <th>Remaining Active</th>
                 <th>Status User</th>
                 <th>Status Payment</th>
@@ -74,14 +73,13 @@ function ListTransaction() {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{item.user.fullName}</td>
-                  <td>{item.attache}</td>
                   <td>{Duration(item.dueDate, item.startDate)}</td>
                   <td
                     className={
-                      item.user.subscribe ? "text-success" : "text-danger"
+                      item.status == "success" ? "text-success" : "text-danger"
                     }
                   >
-                    {item.user.subscribe ? "Active" : "Deactive"}
+                    {item.status == "success" ? "Active" : "Not Active"}
                   </td>
                   <td
                     className={
@@ -96,7 +94,7 @@ function ListTransaction() {
                       ? "Success"
                       : item.status == "pending"
                       ? "Pending"
-                      : "Canceled"}
+                      : "Failed"}
                   </td>
                 </tr>
               ))}

@@ -2,7 +2,8 @@ package main
 
 // import (
 // 	"fmt"
-// 	"time"
+// 	// "time"
+// 	"math/rand"
 // )
 
 // func main(){
@@ -15,11 +16,13 @@ package main
 // 	// duration := time.Duration(n) * time.Second
 // 	// fmt.Println("duration:", duration)
 
-// 	currentTime := time.Now()
+// 	// currentTime := time.Now()
 
-//     fmt.Println("Current Time: ", currentTime)
+//     // fmt.Println("Current Time: ", currentTime)
 
-// 	dueDate :=	currentTime.AddDate(0, 1, 0)
-// 	fmt.Println("Expired in:", dueDate)
+// 	// dueDate :=	currentTime.AddDate(0, 1, 0)
+// 	// fmt.Println("Expired in:", dueDate)
 
+// 	randomId := rand.Int(9999)
+// 	fmt.Println("Random id:", randomId)
 // }

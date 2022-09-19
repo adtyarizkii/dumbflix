@@ -19,37 +19,6 @@ function Listfilm(props) {
             <h2 className="text-light ms-4"> List Film</h2>
           </div>
 
-          <div className="d-flex">
-            <Dropdown>
-              <Dropdown.Toggle
-                variant="outline-secondar mx-3 text-light border"
-                id="dropdown-basic"
-              >
-                Category
-              </Dropdown.Toggle>
-              <Dropdown.Menu className=" bg-transparent border">
-                <Dropdown.Item className="text-light">
-                  <Link
-                    to="/admin/listfilms/tv-series"
-                    className="text-light"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Tv Series
-                  </Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                  <Link
-                    to="/admin/listfilms/movies"
-                    className="text-light"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Movies
-                  </Link>
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-          </div>
-
           <div className="d-flex ms-auto p-2">
             <Button as={Link} to="/admin/addfilm" variant="danger">
               Add Film

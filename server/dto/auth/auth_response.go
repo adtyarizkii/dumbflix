@@ -1,6 +1,7 @@
 package authdto
 
 type LoginResponse struct {
+	ID        int    `json:"id"`
 	FullName  string `gorm:"type: varchar(255)" json:"fullName"`
 	Email     string `gorm:"type: varchar(255)" json:"email"`
 	Gender    string `gorm:"type: varchar(255)" json:"gender"`
@@ -12,6 +13,7 @@ type LoginResponse struct {
 }
 
 type CheckAuthResponse struct {
+	ID        int    `json:"id"`
 	FullName  string `gorm:"type: varchar(255)" json:"fullName"`
 	Email     string `gorm:"type: varchar(255)" json:"email"`
 	Gender    string `gorm:"type: varchar(255)" json:"gender"`
@@ -23,6 +25,7 @@ type CheckAuthResponse struct {
 }
 
 type RegisterResponse struct {
+	ID       int    `json:"id"`
 	FullName string `gorm:"type: varchar(255)" json:"fullName"`
 	Email    string `gorm:"type: varchar(255)" json:"email"`
 	Password string `gorm:"type: varchar(255)" json:"password"`

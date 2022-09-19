@@ -8,7 +8,7 @@ function Listfilms() {
   return (
     <div>
       <NavbarAdmin />
-      <Listfilm category={params.category} />
+      <Listfilm />
     </div>
   );
 }

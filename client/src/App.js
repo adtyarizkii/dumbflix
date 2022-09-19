@@ -18,6 +18,7 @@ import AdDetailPage from "./pages/admin/AdDetailPage";
 import "./App.css";
 
 import { API, setAuthToken } from "./config/api";
+import LayoutAuth from "./pages/layout/LayoutAuth";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -26,7 +27,8 @@ if (localStorage.token) {
 function App() {
   let navigate = useNavigate();
   const [state, dispatch] = useContext(UserContext);
-  // console.log(state);
+  console.log("ini state:", state);
+
   useEffect(() => {
     if (localStorage.token) {
       setAuthToken(localStorage.token);
@@ -47,8 +49,7 @@ function App() {
   const checkUser = async () => {
     try {
       const response = await API.get("/check-auth");
-      console.log("response checkuser app.js");
-      console.log(response);
+      console.log("ini response:", response);
 
       // If the token incorrect
       if (response.status === 404) {
@@ -82,14 +83,21 @@ function App() {
     <>
       <Routes>
         {/* user */}
-        <Route path="/" element={<Auth />} />
+        <Route path="/" element={<LayoutAuth />}>
+          <Route index element={<HomePage />} />
+          <Route path="/tvshows" element={<TvseriesPage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/upgrade" element={<Upgrade />} />
+          <Route path="/detailfilm" element={<DetailPage />} />
+        </Route>
         <Route path="/user" element={<LayoutUser />}>
           <Route index element={<HomePage />} />
           <Route path="/user/tvshows" element={<TvseriesPage />} />
           <Route path="/user/movies" element={<MoviesPage />} />
           <Route path="/user/profile" element={<Profile />} />
           <Route path="/user/upgrade" element={<Upgrade />} />
-          <Route path="/user/detailfilm" element={<DetailPage />} />
+          <Route path="/user/detailfilm/:id" element={<DetailPage />} />
         </Route>
         {/* admin */}
         <Route path="/admin" element={<LayoutAdmin />}>
@@ -97,7 +105,7 @@ function App() {
           <Route path="/admin/addfilm" element={<Addfilm />} />
           <Route path="/admin/listfilms" element={<Listfilms />} />
           <Route path="/admin/listfilms/:category" element={<Listfilms />} />
-          <Route path="/admin/detail" element={<AdDetailPage />} />
+          <Route path="/admin/detail/:id" element={<AdDetailPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

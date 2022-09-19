@@ -49,7 +49,7 @@ function Auth() {
         <Container>
           <Nav>
             <Nav.Link>
-              <Link to="/" className="navlink text-white">
+              <Link to="/auth" className="navlink text-white">
                 Home
               </Link>
             </Nav.Link>

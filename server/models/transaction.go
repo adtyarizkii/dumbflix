@@ -8,7 +8,7 @@ type Transaction struct {
 	DueDate	  time.Time     	   		`json:"dueDate"`
 	UserID    int	                    `json:"-" form:"user_id"`
 	User	  UserTransactionResponse 	`json:"user" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
-	Attache	  string					`json:"attache" gorm:"type:varchar(50)"`
+	Price	  int						`json:"price"`
 	Status    string               		`json:"status" gorm:"type:varchar(50)"`
 	CreatedAt time.Time            		`json:"-"`
 	UpdatedAt time.Time            		`json:"-"`
@@ -20,7 +20,7 @@ type TransactionResponse struct {
 	DueDate	  time.Time     	   		`json:"dueDate"`
 	UserID    int	                    `json:"-"`
 	User	  UserTransactionResponse 	`json:"user" gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
-	Attache	  string					`json:"attache"`
+	Price	  string					`json:"price"`
 	Status    string               		`json:"status"`
 }
 

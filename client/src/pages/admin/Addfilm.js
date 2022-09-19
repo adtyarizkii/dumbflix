@@ -14,7 +14,7 @@ function Addfilm() {
   let navigate = useNavigate();
 
   const [categories, setCategories] = useState([]); //Store all category data
-  const [categoryId, setCategoryId] = useState(); //Save the selected category id
+  // const [categoryId, setCategoryId] = useState(); //Save the selected category id
   const [preview, setPreview] = useState(null); //For image preview
 
   const [form, setForm] = useState({
