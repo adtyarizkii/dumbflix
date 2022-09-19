@@ -54,7 +54,7 @@ export default function NavbarAdmin() {
               <NavDropdown.Item
                 style={{ backgroundColor: "black", color: "white" }}
                 as={Link}
-                to="/listfilms"
+                to="/admin/listfilms"
               >
                 <img
                   src={Film}

@@ -36,9 +36,9 @@ function App() {
     if (state.isLogin === false) {
       navigate("/");
     } else {
-      if (state.user.status === "Admin") {
+      if (state.user.role === "admin") {
         navigate("/admin");
-      } else if (state.user.status === "Customer") {
+      } else if (state.user.role === "user") {
         navigate("/user");
       }
     }
@@ -47,6 +47,8 @@ function App() {
   const checkUser = async () => {
     try {
       const response = await API.get("/check-auth");
+      console.log("response checkuser app.js");
+      console.log(response);
 
       // If the token incorrect
       if (response.status === 404) {
@@ -74,6 +76,7 @@ function App() {
     if (localStorage.token) {
       checkUser();
     }
+    console.log("user context", state);
   }, []);
   return (
     <>

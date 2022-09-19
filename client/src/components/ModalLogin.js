@@ -29,6 +29,8 @@ export default function ModalLogin({ loginShow, setLoginShow, loginHere }) {
     try {
       e.preventDefault();
 
+      console.log("user submit", state);
+
       // Configuration
       const config = {
         headers: {

@@ -8,6 +8,9 @@ import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 function Listfilm(props) {
+  const title = "List Film Admin";
+  document.title = "Dumbflix | " + title;
+
   return (
     <>
       <div style={{ marginTop: "11vh" }}>
@@ -27,7 +30,7 @@ function Listfilm(props) {
               <Dropdown.Menu className=" bg-transparent border">
                 <Dropdown.Item className="text-light">
                   <Link
-                    to="/listfilms/tv-series"
+                    to="/admin/listfilms/tv-series"
                     className="text-light"
                     style={{ textDecoration: "none" }}
                   >
@@ -36,7 +39,7 @@ function Listfilm(props) {
                 </Dropdown.Item>
                 <Dropdown.Item>
                   <Link
-                    to="/listfilms/movies"
+                    to="/admin/listfilms/movies"
                     className="text-light"
                     style={{ textDecoration: "none" }}
                   >
@@ -48,7 +51,7 @@ function Listfilm(props) {
           </div>
 
           <div className="d-flex ms-auto p-2">
-            <Button as={Link} to="/addfilm" variant="danger">
+            <Button as={Link} to="/admin/addfilm" variant="danger">
               Add Film
             </Button>
           </div>
@@ -65,7 +68,7 @@ function Listfilm(props) {
                       <div className="d-flex mx-auto" key={index}>
                         <Card style={{ backgroundColor: "black" }} className="">
                           <Link
-                            to="/listdetails"
+                            to="/admin/detail"
                             className="text-decoration-none"
                           >
                             <Card.Img
@@ -96,7 +99,7 @@ function Listfilm(props) {
                           className="px-2"
                         >
                           <Link
-                            to="/listdetails"
+                            to="/admin/detail"
                             className="text-decoration-none"
                           >
                             <Card.Img

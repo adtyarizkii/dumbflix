@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table, Card, Dropdown } from "react-bootstrap";
+import { useQuery } from "react-query";
+
+import { API } from "../../config/api";
 
 const styles = {
   cardd: {
@@ -7,7 +10,49 @@ const styles = {
     marginTop: "10vh",
   },
 };
+
 function ListTransaction() {
+  const title = "List Transactions";
+  document.title = "Dumbflix | " + title;
+
+  let { data: transactions } = useQuery("cacheTransactions", async () => {
+    const response = await API.get("/transactions");
+    return response.data.data;
+  });
+  console.log(transactions);
+
+  function Duration(dueDate, startDate) {
+    const due = new Date(dueDate);
+    startDate = new Date();
+
+    let duration;
+
+    if (startDate < due) {
+      duration = new Date(due - startDate);
+    }
+
+    let years = duration.getFullYear() - 1970;
+    let months = duration.getMonth();
+    let days = duration.getDate();
+
+    let yearTxt = "year";
+    let monthTxt = "month";
+    let dayTxt = "day";
+
+    if (years > 1) yearTxt += "s";
+    if (months > 1) monthTxt += "s";
+    if (days > 1) dayTxt += "s";
+
+    if (years >= 1) {
+      duration = `${years} ${yearTxt} ${months} ${monthTxt} ${days} ${dayTxt}`;
+    } else if (months >= 1) {
+      duration = `${months} ${monthTxt} ${days} ${dayTxt}`;
+    } else {
+      duration = `${days} ${dayTxt}`;
+    }
+    return duration;
+  }
+
   return (
     <div>
       <Card style={styles.cardd}>
@@ -25,14 +70,36 @@ function ListTransaction() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Radif Ganteng</td>
-                <td>bca.jpg</td>
-                <td>26/Hari</td>
-                <td className="text-success">Active</td>
-                <td className="text-success">Approve</td>
-              </tr>
+              {transactions?.map((item, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{item.user.fullName}</td>
+                  <td>{item.attache}</td>
+                  <td>{Duration(item.dueDate, item.startDate)}</td>
+                  <td
+                    className={
+                      item.user.subscribe ? "text-success" : "text-danger"
+                    }
+                  >
+                    {item.user.subscribe ? "Active" : "Deactive"}
+                  </td>
+                  <td
+                    className={
+                      item.status == "success"
+                        ? "text-success"
+                        : item.status == "pending"
+                        ? "text-warning"
+                        : "text-danger"
+                    }
+                  >
+                    {item.status == "success"
+                      ? "Success"
+                      : item.status == "pending"
+                      ? "Pending"
+                      : "Canceled"}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </Card.Body>

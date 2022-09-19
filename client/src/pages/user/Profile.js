@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import avatar from "../../assets/blank-profile.png";
 import name from "../../assets/profile/name.png";
 import email from "../../assets/profile/email.png";
@@ -6,10 +6,16 @@ import status from "../../assets/profile/status.png";
 import gender from "../../assets/profile/gender.png";
 import phone from "../../assets/profile/phone.png";
 import address from "../../assets/profile/address.png";
+import { UserContext } from "../../context/userContext";
 
 function Profile() {
   const title = "Profile";
   document.title = "Dumbflix | " + title;
+
+  const [state] = useContext(UserContext);
+
+  console.log(state);
+
   return (
     <div className="profile-container">
       <div className="profile-card">
@@ -23,7 +29,7 @@ function Profile() {
             </div>
             <div className="profile-details">
               <span style={{ fontSize: "18px", fontWeight: "bold" }}>
-                Aditya Rizki Gerwawan
+                {state.user.fullName}
               </span>
               <span>Fullname</span>
             </div>
@@ -34,7 +40,7 @@ function Profile() {
             </div>
             <div className="profile-details">
               <span style={{ fontSize: "18px", fontWeight: "bold" }}>
-                aditya.rizki0501@gmail.com
+                {state.user.email}
               </span>
               <span>Email</span>
             </div>
@@ -45,8 +51,9 @@ function Profile() {
             </div>
             <div className="profile-details">
               <span style={{ fontSize: "18px", fontWeight: "bold" }}>
-                {/* {subscribe ? "Active" : "Not Active Please Subscribe"} */}
-                Active
+                {state.user.subscribe
+                  ? "Active"
+                  : "Not Active Please Subscribe"}
               </span>
               <span>Status</span>
             </div>
@@ -66,7 +73,7 @@ function Profile() {
             </div>
             <div className="profile-details">
               <span style={{ fontSize: "18px", fontWeight: "bold" }}>
-                +62 83 829 800 185
+                {state.user.phone}
               </span>
               <span>Mobile Phone</span>
             </div>
@@ -77,7 +84,7 @@ function Profile() {
             </div>
             <div className="profile-details">
               <span style={{ fontSize: "18px", fontWeight: "bold" }}>
-                Kota Bandung
+                {state.user.address}
               </span>
               <span>Address</span>
             </div>
