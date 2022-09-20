@@ -117,18 +117,19 @@ function Upgrade() {
             Premium
           </h1>
           <p>
-            Bayar sekarang dan nikmati streaming film-film yang kekinian dari{" "}
+            Dengan berlangganan Premium dengan harga Rp. 30.000,- Anda bisa
+            menikmati streaming film-film yang kekinian dari{" "}
             <span className="red">DUMBFLIX </span> <br />{" "}
             <span className="red">DUMBFLIX </span> : 0981312323
           </p>
           <form>
             <div className="form-payment">
-              <input
+              {/* <input
                 type="number"
                 name="accountNumber"
                 className="custom-input mb-3"
                 placeholder="Input Your Account Number"
-              />
+              /> */}
 
               <button
                 type="button"

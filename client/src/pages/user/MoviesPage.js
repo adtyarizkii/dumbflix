@@ -2,6 +2,8 @@ import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import bgImg from "../../assets/bgjoker.png";
 import img from "../../assets/txtjoker.png";
+import { API } from "../../config/api";
+import { useQuery } from "react-query";
 import movies from "../../dummyData/movies.js";
 
 function MoviesPage() {
@@ -11,6 +13,10 @@ function MoviesPage() {
   const [data, setData] = useState(movies);
   console.log(data);
   //   console.log(ts);
+  let { data: film } = useQuery("filmsCache", async () => {
+    const response = await API.get("/films");
+    return response.data.data;
+  });
 
   return (
     <>
@@ -50,11 +56,11 @@ function MoviesPage() {
       <div style={{ backgroundColor: "black" }}>
         <h4 className="text-white ms-3">Movies</h4>
         <div className="containerCard">
-          {data?.map((item, index) => (
-            <Link to="/detailFilm">
-              <div className="box mb-5" key={item.id}>
+          {film?.slice(0, 12).map((item, index) => (
+            <Link to={`/user/detailfilm/${item.id}`}>
+              <div className="box" key={index}>
                 <div className="imgBx">
-                  <img src={item.img} alt="" />
+                  <img src={item.thumbnailFilm} alt="" />
                 </div>
                 <div className="content">
                   <div>

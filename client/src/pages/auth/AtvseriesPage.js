@@ -1,19 +1,18 @@
 import { React, useState } from "react";
-import bgImg from "../../assets/the-witcher.png";
 import { Link } from "react-router-dom";
+import bgImg from "../../assets/bglacasa.png";
+import img from "../../assets/lacasa.png";
 import { API } from "../../config/api";
 import { useQuery } from "react-query";
-import img from "../../assets/txtw.png";
 
-function HomePage() {
-  const title = "Home";
+function AtvseriesPage() {
+  const title = "Tv Shows";
   document.title = "Dumbflix | " + title;
 
   let { data: film } = useQuery("filmsCache", async () => {
     const response = await API.get("/films");
     return response.data.data;
   });
-  console.log(film);
 
   return (
     <>
@@ -37,11 +36,14 @@ function HomePage() {
                 width: "43%",
               }}
             >
-              Geralt of Rivia, a solitary monster hunter, struggles to find his
-              place in a world where people often prove more wicked than beast
+              Money Heist is a crime drama on Netflix - originally called La
+              Casa de Papel. Money Heist season 3 has just been released by the
+              streaming service. The plot reads: "Eight thieves take hostages
+              and lock themselves in the Royal Mint of Spain as a criminal
+              mastermind manipulates the police to carry out his plan."
             </p>
             <div className="d-flex">
-              <p style={{ padding: "3px" }}>2019 </p>{" "}
+              <p style={{ padding: "3px" }}>2017 </p>
               <p className="ms-3 tvseries"> TV Series</p>
             </div>
             <button className="btn-watch mt-2">WATCH NOW !</button>
@@ -49,22 +51,20 @@ function HomePage() {
         </div>
       </div>
       <div style={{ backgroundColor: "black" }}>
-        <h4 className="text-white ms-3">Enjoy watching movies..</h4>
+        <h4 className="text-white ms-3">Tv Series</h4>
         <div className="containerCard">
-          {film?.slice(0, 12).map((item, index) => (
-            <Link to={`/user/detailfilm/${item.id}`}>
-              <div className="box" key={index}>
-                <div className="imgBx">
-                  <img src={item.thumbnailFilm} alt="" />
-                </div>
-                <div className="content">
-                  <div>
-                    <h2>{item.title}</h2>
-                    <p>{item.year}</p>
-                  </div>
+          {film?.map((item) => (
+            <div className="box mb-5">
+              <div className="imgBx">
+                <img src={item.thumbnailFilm} alt="" />
+              </div>
+              <div className="content">
+                <div>
+                  <h2>{item.title}</h2>
+                  <p>{item.year}</p>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
@@ -72,4 +72,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default AtvseriesPage;

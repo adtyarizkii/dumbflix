@@ -1,5 +1,7 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
+import { API } from "../../config/api";
+import { useQuery } from "react-query";
 import bgImg from "../../assets/bglacasa.png";
 import img from "../../assets/lacasa.png";
 import tvSeries from "../../dummyData/tvseries.js";
@@ -9,6 +11,11 @@ function TvseriesPage() {
   document.title = "Dumbflix | " + title;
 
   const [dataTvSeries, setDataTvSeries] = useState(tvSeries);
+
+  let { data: film } = useQuery("filmsCache", async () => {
+    const response = await API.get("/films");
+    return response.data.data;
+  });
 
   return (
     <>
@@ -49,11 +56,11 @@ function TvseriesPage() {
       <div style={{ backgroundColor: "black" }}>
         <h4 className="text-white ms-3">Tv Series</h4>
         <div className="containerCard">
-          {dataTvSeries.map((item) => (
-            <Link to="/detailFilm">
-              <div className="box mb-5">
+          {film?.slice(0, 12).map((item, index) => (
+            <Link to={`/user/detailfilm/${item.id}`}>
+              <div className="box" key={index}>
                 <div className="imgBx">
-                  <img src={item.img} alt="" />
+                  <img src={item.thumbnailFilm} alt="" />
                 </div>
                 <div className="content">
                   <div>

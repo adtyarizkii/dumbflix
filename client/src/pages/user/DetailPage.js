@@ -1,14 +1,35 @@
-import React, { useState } from "react";
-import movies from "../../dummyData/movies";
-import tvSeries from "../../dummyData/tvseries";
+import { useQuery, useMutation } from "react-query";
+import { useParams, useNavigate } from "react-router-dom";
+import { API, setAuthToken } from "../../config/api";
+import React, { useEffect, useState, useContext } from "react";
+import { UserContext } from "../../context/userContext";
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function DetailPage() {
-  const category = { movies, tvSeries };
-  console.log(category);
+  const [state] = useContext(UserContext);
+  let navigate = useNavigate();
+  let { id } = useParams();
 
-  const [dataCategory, setDataCategory] = useState(category);
-  console.log("Pemisa Cat");
-  console.log(dataCategory.movies);
+  let { data: film } = useQuery("productCache", async () => {
+    const response = await API.get("/film/" + id);
+    return response.data.data;
+  });
+  console.log(film);
+
+  useEffect(() => {
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
+
+    // Redirect subscribe
+    if (state.user.subscribe === false) {
+      navigate("/user/upgrade");
+    }
+  }, [state]);
+
   return (
     <div>
       <div className="video-control">
@@ -24,17 +45,13 @@ function DetailPage() {
       <div className="detail-bot">
         <div className="detail-desc">
           <div className="img-mov me-3">
-            <img
-              src="https://i.ytimg.com/vi/ePpJDKfRAyM/movieposter.jpg"
-              alt=""
-              width="100%"
-            />
+            <img src={film?.thumbnailFilm} alt="" width="100%" />
           </div>
           <div className="desc-mov">
-            <h2>Avengers: End Game</h2>
+            <h2>{film?.title}</h2>
             <div className="d-flex text-muted">
-              <p style={{ padding: "3px" }}>2019 </p>
-              <p className="ms-3 txt-mtd">{dataCategory.movies[3].category}</p>
+              <p style={{ padding: "3px" }}>{film?.year} </p>
+              <p className="ms-3 txt-mtd">{film?.category?.name}</p>
             </div>
             <p
               className=""
@@ -43,8 +60,7 @@ function DetailPage() {
                 width: "80%",
               }}
             >
-              Geralt of Rivia, a solitary monster hunter, struggles to find his
-              place in a world where people often prove more wicked than beast
+              {film?.desc}
             </p>
           </div>
         </div>

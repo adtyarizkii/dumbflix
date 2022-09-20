@@ -99,7 +99,7 @@ function Addfilm() {
       const response = await API.post("/film", formData, config);
       console.log(response);
 
-      navigate("/admin");
+      navigate("/admin/listfilms");
     } catch (error) {
       console.log(error);
     }

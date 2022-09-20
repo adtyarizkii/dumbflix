@@ -48,7 +48,7 @@ function NavbarUser() {
               </Link>
             </Nav.Link>
           </Nav>
-          <Navbar.Brand as={Link} to="/" style={{ marginLeft: "17.5rem" }}>
+          <Navbar.Brand as={Link} to="/user" style={{ marginLeft: "17.5rem" }}>
             <img src={Logo} alt="" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

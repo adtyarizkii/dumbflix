@@ -5,7 +5,7 @@ import { API } from "../../config/api";
 import { useQuery } from "react-query";
 import img from "../../assets/txtw.png";
 
-function HomePage() {
+function AhomePage() {
   const title = "Home";
   document.title = "Dumbflix | " + title;
 
@@ -52,19 +52,17 @@ function HomePage() {
         <h4 className="text-white ms-3">Enjoy watching movies..</h4>
         <div className="containerCard">
           {film?.slice(0, 12).map((item, index) => (
-            <Link to={`/user/detailfilm/${item.id}`}>
-              <div className="box" key={index}>
-                <div className="imgBx">
-                  <img src={item.thumbnailFilm} alt="" />
-                </div>
-                <div className="content">
-                  <div>
-                    <h2>{item.title}</h2>
-                    <p>{item.year}</p>
-                  </div>
+            <div className="box" key={index}>
+              <div className="imgBx">
+                <img src={item.thumbnailFilm} alt="" />
+              </div>
+              <div className="content">
+                <div>
+                  <h2>{item.title}</h2>
+                  <p>{item.year}</p>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
@@ -72,4 +70,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default AhomePage;

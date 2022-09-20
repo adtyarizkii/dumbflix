@@ -1,19 +1,17 @@
 import { React, useState } from "react";
-import bgImg from "../../assets/the-witcher.png";
-import { Link } from "react-router-dom";
+import bgImg from "../../assets/bgjoker.png";
+import img from "../../assets/txtjoker.png";
 import { API } from "../../config/api";
 import { useQuery } from "react-query";
-import img from "../../assets/txtw.png";
 
-function HomePage() {
-  const title = "Home";
+function AmoviesPage() {
+  const title = "Movies";
   document.title = "Dumbflix | " + title;
 
   let { data: film } = useQuery("filmsCache", async () => {
     const response = await API.get("/films");
     return response.data.data;
   });
-  console.log(film);
 
   return (
     <>
@@ -37,34 +35,34 @@ function HomePage() {
                 width: "43%",
               }}
             >
-              Geralt of Rivia, a solitary monster hunter, struggles to find his
-              place in a world where people often prove more wicked than beast
+              In Gotham City, mentally troubled comedian Arthur Fleck is
+              disregarded and mistreated by society. He then embarks on a
+              downward spiral of revolution and bloody crime. This path brings
+              him face-to-face with his alter-ego: the Joker.
             </p>
             <div className="d-flex">
-              <p style={{ padding: "3px" }}>2019 </p>{" "}
-              <p className="ms-3 tvseries"> TV Series</p>
+              <p style={{ padding: "3px" }}>2019 </p>
+              <p className="ms-3 movies"> Movies</p>
             </div>
             <button className="btn-watch mt-2">WATCH NOW !</button>
           </div>
         </div>
       </div>
       <div style={{ backgroundColor: "black" }}>
-        <h4 className="text-white ms-3">Enjoy watching movies..</h4>
+        <h4 className="text-white ms-3">Movies</h4>
         <div className="containerCard">
-          {film?.slice(0, 12).map((item, index) => (
-            <Link to={`/user/detailfilm/${item.id}`}>
-              <div className="box" key={index}>
-                <div className="imgBx">
-                  <img src={item.thumbnailFilm} alt="" />
-                </div>
-                <div className="content">
-                  <div>
-                    <h2>{item.title}</h2>
-                    <p>{item.year}</p>
-                  </div>
+          {film?.map((item, index) => (
+            <div className="box mb-5" key={index}>
+              <div className="imgBx">
+                <img src={item.thumbnailFilm} alt="" />
+              </div>
+              <div className="content">
+                <div>
+                  <h2>{item.title}</h2>
+                  <p>{item.year}</p>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
@@ -72,4 +70,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default AmoviesPage;
