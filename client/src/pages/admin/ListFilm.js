@@ -1,10 +1,7 @@
 import React from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { Row, Col } from "react-bootstrap";
 import { useQuery } from "react-query";
-import { API } from "../../../config/api";
+import { API } from "../../config/api";
 import { Link } from "react-router-dom";
 
 function Listfilm() {
@@ -30,9 +27,9 @@ function Listfilm() {
           </div>
         </div>
         <div className="containerCard">
-          {film?.slice(0, 12).map((item) => (
-            <Link to="/detailFilm">
-              <div className="box" key={item.id}>
+          {film?.slice(0, 12).map((item, index) => (
+            <Link to={`/admin/detail/${item.id}`}>
+              <div className="box" key={index}>
                 <div className="imgBx">
                   <img src={item.thumbnailFilm} alt="" />
                 </div>

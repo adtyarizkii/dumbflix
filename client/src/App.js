@@ -10,7 +10,7 @@ import DetailPage from "./pages/user/DetailPage";
 import Upgrade from "./pages/user/Upgrade";
 import LayoutUser from "./pages/layout/LayoutUser";
 import LayoutAdmin from "./pages/layout/LayoutAdmin";
-import Listfilms from "./pages/admin/listFilmAdmin/listfilms";
+import Listfilm from "./pages/admin/ListFilm";
 import Addfilm from "./pages/admin/Addfilm";
 import ListTransaction from "./pages/admin/ListTransaction";
 import AdDetailPage from "./pages/admin/AdDetailPage";
@@ -51,7 +51,6 @@ function App() {
   const checkUser = async () => {
     try {
       const response = await API.get("/check-auth");
-      console.log("ini response:", response);
 
       // If the token incorrect
       if (response.status === 404) {
@@ -79,7 +78,6 @@ function App() {
     if (localStorage.token) {
       checkUser();
     }
-    console.log("user context", state);
   }, []);
   return (
     <>
@@ -103,7 +101,7 @@ function App() {
         <Route path="/admin" element={<LayoutAdmin />}>
           <Route index element={<ListTransaction />} />
           <Route path="/admin/addfilm" element={<Addfilm />} />
-          <Route path="/admin/listfilms" element={<Listfilms />} />
+          <Route path="/admin/listfilms" element={<Listfilm />} />
           <Route path="/admin/detail/:id" element={<AdDetailPage />} />
         </Route>
         <Route path="*" element={<NotFound />} />

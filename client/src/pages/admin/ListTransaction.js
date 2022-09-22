@@ -19,7 +19,7 @@ function ListTransaction() {
     const response = await API.get("/transactions");
     return response.data.data;
   });
-  console.log(transactions);
+  // console.log(transactions);
 
   function Duration(dueDate, startDate) {
     const due = new Date(dueDate);

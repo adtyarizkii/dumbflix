@@ -20,6 +20,7 @@ function Addfilm() {
   const [form, setForm] = useState({
     title: "",
     thumbnailFilm: "",
+    linkFilm: "",
     year: "",
     desc: "",
     categoryId: "",
@@ -35,27 +36,6 @@ function Addfilm() {
     }
   };
 
-  // For handle if category selected
-  // const handleChangeCategoryId = (e) => {
-  //   const id = e.target.value;
-  //   const selected = e.target.selected;
-  //   console.log(selected);
-  //   console.log("pemisah");
-
-  //   if (selected) {
-  //     // Save category id if selected
-  //     setCategoryId([...categoryId, parseInt(id)]);
-  //     console.log(selected);
-  //   } else {
-  //     // Delete category id from variable if unselected
-  //     let newCategoryId = categoryId.filter((categoryIdItem) => {
-  //       return categoryIdItem != id;
-  //     });
-  //     setCategoryId(newCategoryId);
-  //   }
-  // };
-  // console.log(setCategoryId);
-  // Handle change data on form
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -89,6 +69,7 @@ function Addfilm() {
         form.thumbnailFilm[0],
         form.thumbnailFilm[0].name
       );
+      formData.set("linkFilm", form.linkFilm);
       formData.set("year", form.year);
       formData.set("desc", form.desc);
       formData.set("category_id", form.categoryId);
@@ -170,6 +151,15 @@ function Addfilm() {
                   />
                 </Form.Group>
               </div>
+            </div>
+            <div className="col-10 d-flex justify-content-center">
+              <Form.Control
+                type="text"
+                placeholder="Link Film"
+                name="linkFilm"
+                onChange={handleChange}
+                className="bg-dark text-white"
+              />
             </div>
             <div className="col-10 d-flex justify-content-center">
               <Form.Control

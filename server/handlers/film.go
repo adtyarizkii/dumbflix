@@ -86,6 +86,7 @@ func (h *handlerFilm) CreateFilm(w http.ResponseWriter, r *http.Request) {
 	request := filmdto.FilmRequest{
 		Title:		         r.FormValue("title"),
 		ThumbnailFilm:   	 r.FormValue("thumbnailFilm"),
+		LinkFilm:   	 r.FormValue("linkFilm"),
 		Year:        		 year,
 		CategoryID:  		category_id,
 		Desc:       		 r.FormValue("desc"),
@@ -103,6 +104,7 @@ func (h *handlerFilm) CreateFilm(w http.ResponseWriter, r *http.Request) {
 	film := models.Film{
 		Title:   request.Title,
 		ThumbnailFilm:  filename,
+		LinkFilm: request.LinkFilm,
 		Year:    request.Year,
 		CategoryID:    category_id,
 		Category:      models.CategoryResponse{},
@@ -151,6 +153,10 @@ func (h *handlerFilm) UpdateFilm(w http.ResponseWriter, r *http.Request) {
 
 	if request.ThumbnailFilm != "" {
 		film.ThumbnailFilm = request.ThumbnailFilm
+	}
+
+	if request.LinkFilm != "" {
+		film.LinkFilm = request.LinkFilm
 	}
 
 	if request.Year != 0 {
@@ -206,6 +212,7 @@ func convertResponseFilm(u models.Film) models.FilmResponse {
 		ID:     u.ID,
 		Title:   u.Title,
 		ThumbnailFilm: u.ThumbnailFilm,
+		LinkFilm: u.LinkFilm,
 		Year: 	u.Year,
 		Category: u.Category,
 		Desc:   u.Desc,

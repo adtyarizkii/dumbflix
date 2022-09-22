@@ -4,14 +4,11 @@ import bgImg from "../../assets/bgjoker.png";
 import img from "../../assets/txtjoker.png";
 import { API } from "../../config/api";
 import { useQuery } from "react-query";
-import movies from "../../dummyData/movies.js";
 
 function MoviesPage() {
   const title = "Movies";
   document.title = "Dumbflix | " + title;
 
-  const [data, setData] = useState(movies);
-  console.log(data);
   //   console.log(ts);
   let { data: film } = useQuery("filmsCache", async () => {
     const response = await API.get("/films");

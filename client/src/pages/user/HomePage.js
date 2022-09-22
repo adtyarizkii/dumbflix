@@ -13,7 +13,6 @@ function HomePage() {
     const response = await API.get("/films");
     return response.data.data;
   });
-  console.log(film);
 
   return (
     <>

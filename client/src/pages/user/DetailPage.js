@@ -34,7 +34,7 @@ function DetailPage() {
     <div>
       <div className="video-control">
         <iframe
-          src="https://www.youtube.com/embed/TcMBFSGVi1c"
+          src={film?.linkFilm}
           allow="autoplay; encrypted-media"
           allowFullScreen
           title="video"
@@ -68,7 +68,7 @@ function DetailPage() {
           <div
             className="img-in-play mt-1"
             style={{
-              backgroundImage: `linear-gradient(to bottom, rgba(104, 106, 116, 0), rgba(0, 0, 0, 0.99)),url(https://i.ytimg.com/vi/ePpJDKfRAyM/movieposter.jpg)`,
+              backgroundImage: `linear-gradient(to bottom, rgba(104, 106, 116, 0), rgba(0, 0, 0, 0.99)),url(${film?.thumbnailFilm})`,
               backgroundPosition: "center center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
@@ -87,7 +87,7 @@ function DetailPage() {
                 In Play Now <br />
                 <br />
                 <br />
-                <span className="text-muted"> Avengers: Endgame</span>
+                <span className="text-muted">{film?.title}</span>
                 <br />
               </p>
             </div>
